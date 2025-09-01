@@ -6,13 +6,23 @@
     <title>index.html | <%= title %></title>
 </head>
 <body>
+    <nav>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/blogs/create">Create Blog</a></li>
+    </nav>
     <h1>Burak Dursun</h1>
     <p>I am learning Node.js</p> 
+        <div class="blogs-content">
+        <h1>All Blogs</h1>
+        <% if (blogs.length) { %>
+            <% blogs.forEach(blog => { %>
+                <h3 class="title"><%= blog.title %></h3>
+                <p class="snippet"><%= blog.snippet %></p>
+            <% }) %>
+        <% } else { %>
+            <p>There are no blogs to display.</p>
+        <% } %>
+    </div>
 </body>
 </html>
-<style>
-    body {
-        display: grid;
-        place-items: center;
-    }
-</style>
