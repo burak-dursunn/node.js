@@ -1,14 +1,19 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // to get the values from the form
 
 app.set('view engine', 'ejs');
 
 app.listen(3000);
-
 // app.use(express.static(path.join(__dirname, 'views')));
+
+// middleware & static files
+app.use(express.static('public')); // anything inside the public folder is going to be accessible as a static file to the frontend
+
+app.use(morgan('dev')); // or morgan('tiny')
 
 const blogs = [
 {title: 'Blog1', snippet: 'lorem ipsum dolor sit amet'},
@@ -16,6 +21,12 @@ const blogs = [
 {title: 'Blog3', snippet: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'}
 ];
 // routers
+
+app.use((req,res,next) => {
+    console.log('Request was made');
+    next(); // pass control to the next middleware
+})
+
 app.get('/', (req,res) => {
     res.render('index', { title: 'home', blogs});
 })
