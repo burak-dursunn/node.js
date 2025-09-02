@@ -13,7 +13,7 @@ app.listen(3000);
 // middleware & static files
 app.use(express.static('public')); // anything inside the public folder is going to be accessible as a static file to the frontend
 
-app.use(morgan('dev')); // or morgan('tiny')
+app.use(morgan('dev')); // argument that we can pass as a parameter the morgan are: combined, tiny, common, short
 
 const blogs = [
 {title: 'Blog1', snippet: 'lorem ipsum dolor sit amet'},
